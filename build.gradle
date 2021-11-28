@@ -22,7 +22,7 @@ dependencies {
 }
 
 war {
-	archiveName 'crudd.war'
+	archiveName 'crud.war'
 }
 
 test {
