@@ -1,6 +1,7 @@
 package mx.ipn.escom.pizarron.crud.controller;
 
 import mx.ipn.escom.pizarron.crud.domain.api.CrudServicePort;
+import mx.ipn.escom.pizarron.crud.domain.data.dto.SaludoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ public class CrudController {
     private CrudServicePort crudServicePort;
 
     @GetMapping("/info")
-    public ResponseEntity<String> activityRecordDetail() {
+    public ResponseEntity<SaludoDto> activityRecordDetail() {
         /*HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Access-Control-Allow-Origin", "*");
         responseHeaders.set("Access-Control-Allow-Methods", "GET,POST,OPTIONS,DELETE,PUT");
@@ -26,8 +27,7 @@ public class CrudController {
                 "X-API-KEY, Origin, X-Requested-With, Content-Type, " +
                 "Accept, Access-Control-Request-Method");
         responseHeaders.set("Content-Type", "application/json");*/
-        String sss = crudServicePort.saludar();
-        return new ResponseEntity<String>(sss, HttpStatus.OK);
+        return new ResponseEntity<>(crudServicePort.saludar(), HttpStatus.OK);
     }
 
 }
