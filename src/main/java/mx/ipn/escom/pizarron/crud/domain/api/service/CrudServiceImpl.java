@@ -12,7 +12,7 @@ public class CrudServiceImpl implements CrudServicePort {
         saludo += "Colaboradores: ";
         saludo += "Martin Fabian, ";
         saludo += "Emmanuel Mendez. ";
-        sss.setMessage("{\"message\": \"" + saludo + "\"}");
+        sss.setMessage(saludo);
         //saludo += "Aquí va haber un TT bien chido.";
         //saludo += "Aquí va haber un TT bien chido.";
         return sss;
