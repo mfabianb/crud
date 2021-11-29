@@ -11,6 +11,6 @@ public class CrudServiceImpl implements CrudServicePort {
         saludo += "Emmanuel Mendez. ";
         //saludo += "Aquí va haber un TT bien chido.";
         //saludo += "Aquí va haber un TT bien chido.";
-        return saludo;
+        return "{message: " + saludo + "}";
     }
 }
