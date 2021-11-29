@@ -21,7 +21,10 @@ public class CrudController {
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Access-Control-Allow-Origin", "*");
         responseHeaders.set("Access-Control-Allow-Methods", "GET,POST,OPTIONS,DELETE,PUT");
-        responseHeaders.set("Access-Control-Allow-Headers", "X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+        responseHeaders.set("Access-Control-Allow-Headers", "append,delete,entries,foreach," +
+                "get,has,keys,set,values,Authorization, " +
+                "X-API-KEY, Origin, X-Requested-With, Content-Type, " +
+                "Accept, Access-Control-Request-Method");
         responseHeaders.set("Content-Type", "application/json");
         String sss = crudServicePort.saludar();
         return new ResponseEntity<String>(sss, responseHeaders, HttpStatus.OK);
