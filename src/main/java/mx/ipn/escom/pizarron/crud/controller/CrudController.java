@@ -18,16 +18,16 @@ public class CrudController {
     private CrudServicePort crudServicePort;
 
     @GetMapping("/info")
-    public ResponseEntity<SaludoDto> activityRecordDetail() {
-        /*HttpHeaders responseHeaders = new HttpHeaders();
+    public ResponseEntity<SaludoDto> getInfo() {
+        HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Access-Control-Allow-Origin", "*");
         responseHeaders.set("Access-Control-Allow-Methods", "GET,POST,OPTIONS,DELETE,PUT");
         responseHeaders.set("Access-Control-Allow-Headers", "append,delete,entries,foreach," +
                 "get,has,keys,set,values,Authorization, " +
                 "X-API-KEY, Origin, X-Requested-With, Content-Type, " +
                 "Accept, Access-Control-Request-Method");
-        responseHeaders.set("Content-Type", "application/json");*/
-        return new ResponseEntity<>(crudServicePort.saludar(), HttpStatus.OK);
+        responseHeaders.set("Content-Type", "application/json");
+        return new ResponseEntity<>( crudServicePort.saludar(), responseHeaders, HttpStatus.OK);
     }
 
 }
