@@ -1,7 +1,7 @@
 package mx.ipn.escom.pizarron.crud.application;
 
-import mx.ipn.escom.pizarron.crud.domain.api.CrudServicePort;
-import mx.ipn.escom.pizarron.crud.domain.api.service.CrudServiceImpl;
+import mx.ipn.escom.pizarron.crud.domain.impl.CatalogServiceImpl;
+import mx.ipn.escom.pizarron.crud.domain.service.CatalogService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class CrudConfig {
 
     @Bean
-    public CrudServicePort activityServicePort() {
-        return new CrudServiceImpl();
+    public CatalogService catalogServicePort() {
+        return new CatalogServiceImpl();
     }
 }
