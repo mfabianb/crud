@@ -27,8 +27,8 @@ public class DrawEntity implements Serializable {
     @Id
     @NotNull
     @Column(name = "id_draw")
-    private String idDraw;
     @Size(max = 36)
+    private String idDraw;
 
     @Basic
     @NotNull
