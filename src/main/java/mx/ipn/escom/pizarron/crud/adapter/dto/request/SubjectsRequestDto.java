@@ -7,16 +7,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class GroupRequestDto implements Serializable {
+public class SubjectsRequestDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String key;
-    private String name;
-    private Boolean enable;
+    private List<SubjectRequestDto> subjectsList;
 }

@@ -13,10 +13,12 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class GroupRequestDto implements Serializable {
+public class GroupSubjectRequestDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String key;
-    private String name;
+    private String idGroupSubject;
+    private String idGroup;
+    private String idSubject;
+    private Integer idSchoolCycle;
     private Boolean enable;
 }

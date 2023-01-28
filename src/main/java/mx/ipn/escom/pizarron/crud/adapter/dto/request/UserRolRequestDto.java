@@ -13,10 +13,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class GroupRequestDto implements Serializable {
+public class UserRolRequestDto implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    private String key;
-    private String name;
-    private Boolean enable;
+    private Integer idUserRol;
+    private String rol;
+    private String description;
 }

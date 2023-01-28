@@ -13,7 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class GroupRequestDto implements Serializable {
+public class SubjectRequestDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String key;

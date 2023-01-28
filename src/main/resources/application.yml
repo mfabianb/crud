@@ -67,3 +67,5 @@ logging:
         escom:
           pizarron:
             crud: DEBUG
+crud:
+  current-cycle: 1

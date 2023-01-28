@@ -2,6 +2,7 @@ package mx.ipn.escom.pizarron.crud.adapter.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -27,6 +28,8 @@ public class GroupSubjectEntity implements Serializable {
     @NotNull
     @Column(name = "id_group_subject")
     @Size(max = 36)
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     private String idGroupSubject;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -40,6 +43,11 @@ public class GroupSubjectEntity implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_school_cycle", referencedColumnName = "id_school_cycle")
     private SchoolCycleEntity idSchoolCycle;
+
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "enable")
+    private Boolean enable;
 
 
 }
