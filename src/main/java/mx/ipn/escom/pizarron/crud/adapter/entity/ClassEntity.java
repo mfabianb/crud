@@ -53,4 +53,15 @@ public class ClassEntity implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_group_subject", referencedColumnName = "id_group_subject")
     private GroupSubjectEntity idGroupSubject;
+
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "enable")
+    private Boolean enable;
+
+    @Basic
+    @NotNull
+    @Size(max = 12)
+    @Column(name = "enroll_link")
+    private String enrollLink;
 }

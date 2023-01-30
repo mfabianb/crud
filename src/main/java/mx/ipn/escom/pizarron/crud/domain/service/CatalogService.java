@@ -1,7 +1,6 @@
 package mx.ipn.escom.pizarron.crud.domain.service;
 
 import mx.ipn.escom.pizarron.crud.adapter.dto.request.*;
-import mx.ipn.escom.pizarron.crud.adapter.dto.request.simple.DataRequest;
 import mx.ipn.escom.pizarron.crud.adapter.dto.request.simple.SimpleRequest;
 import mx.ipn.escom.pizarron.crud.adapter.entity.*;
 import mx.ipn.escom.pizarron.crud.util.exceptions.BusinessException;
@@ -63,11 +62,5 @@ public interface CatalogService {
 
     Page<PermissionEntity> getPermissionList(SimpleRequest simpleRequest) throws BusinessException;
 
-    UserEntity createUser(UserRequestDto userRequestDto) throws BusinessException;
 
-    UserEntity updateUser(UserRequestDto userRequestDto) throws BusinessException;
-
-    Page<UserEntity> getUserList(DataRequest<UserRequestDto> userRequestDto) throws BusinessException;
-
-    UserEntity getUser(UserRequestDto userRequestDto) throws BusinessException;
 }

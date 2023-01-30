@@ -39,4 +39,9 @@ public class UserPermissionEntity implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_permission", referencedColumnName = "id_permission")
     private PermissionEntity idPermission;
+
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "enable")
+    private Boolean enable;
 }

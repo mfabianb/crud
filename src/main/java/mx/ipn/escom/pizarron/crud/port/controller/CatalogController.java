@@ -2,7 +2,6 @@ package mx.ipn.escom.pizarron.crud.port.controller;
 
 import lombok.extern.log4j.Log4j2;
 import mx.ipn.escom.pizarron.crud.adapter.dto.request.*;
-import mx.ipn.escom.pizarron.crud.adapter.dto.request.simple.DataRequest;
 import mx.ipn.escom.pizarron.crud.adapter.dto.request.simple.SimpleRequest;
 import mx.ipn.escom.pizarron.crud.adapter.dto.response.simple.DataResponse;
 import mx.ipn.escom.pizarron.crud.adapter.entity.*;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/catalog")
 @Log4j2
-public class CrudController {
+public class CatalogController {
 
     @Autowired
     CatalogService catalogService;
@@ -278,56 +277,5 @@ public class CrudController {
         }
         return new ResponseEntity<>(new DataResponse<>(userStatusEntities), HttpStatus.OK);
     }
-
-    /**/
-
-
-    @PostMapping("/user")
-    public ResponseEntity<DataResponse<UserEntity>> createUser(@RequestBody UserRequestDto userRequestDto) {
-        UserEntity userEntity = null;
-        try{
-            userEntity = catalogService.createUser(userRequestDto);
-        }catch (Exception businessException){
-            return new ResponseEntity<>(new DataResponse<>(null, false, HttpStatus.BAD_REQUEST.value(),
-                    ExceptionMessage.setMessage(businessException.getMessage())), HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(new DataResponse<>(userEntity), HttpStatus.OK);
-    }
-
-    @PutMapping("/user")
-    public ResponseEntity<DataResponse<UserEntity>> updateUser(@RequestBody UserRequestDto userRequestDto) {
-        UserEntity userEntity = null;
-        try{
-            userEntity = catalogService.updateUser(userRequestDto);
-        }catch (Exception businessException){
-            return new ResponseEntity<>(new DataResponse<>(null, false, HttpStatus.BAD_REQUEST.value(),
-                    ExceptionMessage.setMessage(businessException.getMessage())), HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(new DataResponse<>(userEntity), HttpStatus.OK);
-    }
-
-    @GetMapping("/user")
-    public ResponseEntity<DataResponse<UserEntity>> getUser(@RequestBody UserRequestDto userRequestDto) {
-        try{
-            UserEntity userEntity = catalogService.getUser(userRequestDto);
-            return new ResponseEntity<>(new DataResponse<>(userEntity), HttpStatus.OK);
-        }catch (Exception businessException){
-            return new ResponseEntity<>(new DataResponse<>(null, false, HttpStatus.BAD_REQUEST.value(),
-                    ExceptionMessage.setMessage(businessException.getMessage())), HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    @GetMapping("/user-list")
-    public ResponseEntity<DataResponse<Page<UserEntity>>> getUserList(@RequestBody DataRequest<UserRequestDto> userRequestDto) {
-        log.info(userRequestDto);
-        try{
-            Page<UserEntity> userEntity = catalogService.getUserList(userRequestDto);
-            return new ResponseEntity<>(new DataResponse<>(userEntity), HttpStatus.OK);
-        }catch (Exception businessException){
-            return new ResponseEntity<>(new DataResponse<>(null, false, HttpStatus.BAD_REQUEST.value(),
-                    ExceptionMessage.setMessage(businessException.getMessage())), HttpStatus.BAD_REQUEST);
-        }
-    }
-
 
 }
