@@ -1,17 +1,19 @@
 package mx.ipn.escom.pizarron.crud.adapter.dto.request.simple;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
+
+import java.io.Serializable;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class DataRequest<D> extends SimpleRequest {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class DataRequest<D> extends SimpleRequest implements Serializable {
+    private static final long serialVersionUID = 1L;
     private D data;
-
-    DataRequest(D data){
-        super();
-        this.data = data;
-    }
 
     DataRequest(D data, String sort){
         super(sort);
