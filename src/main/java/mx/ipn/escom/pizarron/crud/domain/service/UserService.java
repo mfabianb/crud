@@ -11,11 +11,11 @@ import org.springframework.data.domain.Page;
 public interface UserService {
     UserResponseDto createUser(UserRequestDto userRequestDto) throws BusinessException;
 
-    UserResponseDto updateUser(UserRequestDto userRequestDto) throws BusinessException;
+    UserResponseDto updateUser(String key, UserRequestDto userRequestDto) throws BusinessException;
 
     Page<UserEntity> getUserList(DataRequest<UserRequestDto> userRequestDto) throws BusinessException;
 
-    UserResponseDto getUser(UserRequestDto userRequestDto) throws BusinessException;
+    UserResponseDto getUser(String key, UserRequestDto userRequestDto) throws BusinessException;
 
-    UserResponseDto updatePermissions(UserPermissionRequestDto userPermissionRequestDto) throws BusinessException;
+    UserResponseDto updatePermissions(String key, UserPermissionRequestDto userPermissionRequestDto) throws BusinessException;
 }

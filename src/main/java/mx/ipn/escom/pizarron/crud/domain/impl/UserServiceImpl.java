@@ -61,11 +61,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDto updateUser(UserRequestDto userRequestDto) throws BusinessException{
+    public UserResponseDto updateUser(String key, UserRequestDto userRequestDto) throws BusinessException{
 
-        validateUserDtoOnUpdate(userRequestDto);
+        validateUserDtoOnUpdate(key, userRequestDto);
 
-        UserEntity userEntity = validateUserNotExistOnUpdate(userRequestDto);
+        UserEntity userEntity = validateUserNotExistOnUpdate(key);
 
         Boolean hasChanges = validateUserDataOnUpdate(userRequestDto, userEntity);
 
@@ -85,18 +85,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDto getUser(UserRequestDto userRequestDto) throws BusinessException {
-        if(Objects.isNull(userRequestDto) || Objects.isNull(userRequestDto.getIdUser()))
+    public UserResponseDto getUser(String key, UserRequestDto userRequestDto) throws BusinessException {
+        if(Objects.isNull(userRequestDto) || Objects.isNull(key))
             throw new BusinessException(NOT_FOUND_DATA_REQUEST + THIS_USER);
-        return mapUserResponse(validateUserNotExistOnUpdate(userRequestDto));
+        return mapUserResponse(validateUserNotExistOnUpdate(key));
     }
 
     @Override
-    public UserResponseDto updatePermissions(UserPermissionRequestDto userPermissionRequestDto) throws BusinessException {
-        if(Objects.isNull(userPermissionRequestDto) || Objects.isNull(userPermissionRequestDto.getIdUser()))
+    public UserResponseDto updatePermissions(String key, UserPermissionRequestDto userPermissionRequestDto) throws BusinessException {
+        if(Objects.isNull(userPermissionRequestDto) || Objects.isNull(key))
             throw new BusinessException(NOT_FOUND_DATA_REQUEST + THIS_USER);
 
-        UserEntity userEntity = userRepository.findByIdUser(userPermissionRequestDto.getIdUser());
+        UserEntity userEntity = userRepository.findByIdUser(key);
 
         List<UserPermissionEntity> userPermissionEntityList = userPermissionRepository.findByIdUser(userEntity);
 
@@ -210,9 +210,9 @@ public class UserServiceImpl implements UserService {
                 || userRequestDto.getIdUserRol() <= 0 ) throw new BusinessException(CREATE_DATA_REQUEST_NULL + THIS_USER);
     }
 
-    private void validateUserDtoOnUpdate(UserRequestDto userRequestDto) throws BusinessException {
+    private void validateUserDtoOnUpdate(String key, UserRequestDto userRequestDto) throws BusinessException {
         validateUserDtoOnCreate(userRequestDto);
-        if(Objects.isNull(userRequestDto.getIdUser()))
+        if(Objects.isNull(key))
             throw new BusinessException(MODIFY_DATA_REQUEST_NULL + THIS_USER);
     }
 
@@ -224,8 +224,8 @@ public class UserServiceImpl implements UserService {
             throw new BusinessException(ALREADY_EXIST_DATA_REQUEST + THIS_USER);
     }
 
-    private UserEntity validateUserNotExistOnUpdate(UserRequestDto userRequestDto) throws BusinessException {
-        UserEntity userEntity = userRepository.findByIdUser(userRequestDto.getIdUser());
+    private UserEntity validateUserNotExistOnUpdate(String key) throws BusinessException {
+        UserEntity userEntity = userRepository.findByIdUser(key);
         if(Objects.isNull(userEntity))
             throw new BusinessException(NOT_FOUND_DATA_REQUEST + THIS_USER);
         return userEntity;
