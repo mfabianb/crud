@@ -7,20 +7,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class GroupSubjectRequestDto implements Serializable {
+public class ClassRequestDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private String key;
+    private String name;
+    private String description;
+    private LocalDateTime creationDate;
     private String idGroupSubject;
-    private String idGroup;
-    private String groupName;
-    private String idSubject;
-    private String subjectName;
-    private Integer idSchoolCycle;
     private Boolean enable;
+    private String enrollLink;
 }

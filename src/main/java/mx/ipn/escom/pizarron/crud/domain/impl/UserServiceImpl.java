@@ -85,9 +85,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDto getUser(String key, UserRequestDto userRequestDto) throws BusinessException {
-        if(Objects.isNull(userRequestDto) || Objects.isNull(key))
-            throw new BusinessException(NOT_FOUND_DATA_REQUEST + THIS_USER);
+    public UserResponseDto getUser(String key) throws BusinessException {
+        if(Objects.isNull(key)) throw new BusinessException(NOT_FOUND_DATA_REQUEST + THIS_USER);
         return mapUserResponse(validateUserNotExistOnUpdate(key));
     }
 
@@ -114,6 +113,11 @@ public class UserServiceImpl implements UserService {
         userPermissionRepository.saveAll(userPermissionEntityList);
 
         return mapUserResponse(userEntity);
+    }
+
+    @Override
+    public String getFullName(UserEntity userEntity){
+        return userEntity.getName() + " " + userEntity.getLastName() + " " + userEntity.getSecondLastName();
     }
 
     private Boolean validateFullName(UserRequestDto userRequestDto, UserEntity userEntity){

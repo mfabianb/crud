@@ -15,7 +15,9 @@ public interface UserService {
 
     Page<UserEntity> getUserList(DataRequest<UserRequestDto> userRequestDto) throws BusinessException;
 
-    UserResponseDto getUser(String key, UserRequestDto userRequestDto) throws BusinessException;
+    UserResponseDto getUser(String key) throws BusinessException;
 
     UserResponseDto updatePermissions(String key, UserPermissionRequestDto userPermissionRequestDto) throws BusinessException;
+
+    String getFullName(UserEntity userEntity);
 }

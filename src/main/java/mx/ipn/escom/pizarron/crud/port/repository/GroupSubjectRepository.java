@@ -22,11 +22,11 @@ public interface GroupSubjectRepository extends JpaRepository<GroupSubjectEntity
     @Query(value = "SELECT g FROM GroupSubjectEntity g " +
             "WHERE " +
             "(g.enable = :enable OR :enable IS NULL) " +
-            "AND (g.idGroup = :idGroup OR :idGroup IS NULL) " +
-            "AND (g.idSubject = :idSubject OR :idSubject IS NULL) " +
+            "AND (g.idGroup.name LIKE CONCAT('%',:groupName,'%') OR :groupName IS NULL) " +
+            "AND (g.idSubject.name LIKE CONCAT('%',:subjectName,'%') OR :subjectName IS NULL) " +
             "AND (g.idSchoolCycle = :idSchoolCycle OR :idSchoolCycle IS NULL) ")
-    Page<GroupSubjectEntity> findAllByFilter(@Param("idGroup") GroupEntity idGroup,
-                                             @Param("idSubject") SubjectEntity idSubject,
+    Page<GroupSubjectEntity> findAllByFilter(@Param("groupName") String groupName,
+                                             @Param("subjectName") String subjectName,
                                              @Param("idSchoolCycle") SchoolCycleEntity idSchoolCycle,
                                              @Param("enable")Boolean enable,
                                              Pageable pageable);

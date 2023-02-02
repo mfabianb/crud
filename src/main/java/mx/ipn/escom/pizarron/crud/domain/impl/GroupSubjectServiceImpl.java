@@ -124,15 +124,12 @@ public class GroupSubjectServiceImpl implements GroupSubjectService {
                 simpleRequest.getSort(), simpleRequest.getOrder());
 
         SchoolCycleEntity schoolCycleEntity = SchoolCycleEntity.builder().idSchoolCycle(Integer.parseInt(currentSchoolCycle)).build();
-        GroupEntity groupEntity = GroupEntity.builder().idGroup(simpleRequest.getData().getIdGroup()).build();
-        SubjectEntity subjectEntity = SubjectEntity.builder().idSubject(simpleRequest.getData().getIdSubject()).build();
 
-        Page<GroupSubjectEntity> groupSubjectEntityList = groupSubjectRepository.findAllByFilter(groupEntity, subjectEntity,
-                schoolCycleEntity, simpleRequest.getData().getEnable(), pageable.getPageable());
+        Page<GroupSubjectEntity> groupSubjectEntityList = groupSubjectRepository.findAllByFilter(simpleRequest.getData().getGroupName(),
+                simpleRequest.getData().getSubjectName(), schoolCycleEntity, simpleRequest.getData().getEnable(), pageable.getPageable());
 
-        if(Objects.isNull(groupSubjectEntityList)){
+        if(Objects.isNull(groupSubjectEntityList))
             throw new BusinessException(NOT_FOUND_DATA_REQUEST + THIS_RESOURCE);
-        }
 
         return groupSubjectEntityList;
 

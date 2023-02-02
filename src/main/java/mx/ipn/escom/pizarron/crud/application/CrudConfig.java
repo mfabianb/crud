@@ -20,6 +20,9 @@ public class CrudConfig {
     public GroupSubjectService groupSubjectService() { return new GroupSubjectServiceImpl(); }
 
     @Bean
+    public ParticipantService participantService() { return new ParticipantServiceImpl(); }
+
+    @Bean
     public PermissionService permissionService () { return new PermissionServiceImpl(); }
 
     @Bean

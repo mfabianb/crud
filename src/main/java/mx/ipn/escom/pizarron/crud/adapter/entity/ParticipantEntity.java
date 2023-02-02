@@ -59,4 +59,9 @@ public class ParticipantEntity implements Serializable {
     @Column(name = "pending")
     private Boolean pending;
 
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "owner")
+    private Boolean owner;
+
 }

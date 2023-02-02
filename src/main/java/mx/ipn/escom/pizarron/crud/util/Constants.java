@@ -13,6 +13,8 @@ public class Constants {
     public static final String THIS_SCHOOL_CYCLE = "ESTE CICLO ESCOLAR";
     public static final String THIS_ROL = "ESTE ROL";
     public static final String THIS_USER = "ESTE USUARIO";
+    public static final String THIS_PARTICIPANT = "ESTE PARTICIPANTE";
+    public static final String THIS_CLASS = "ESTA CLASE";
     public static final String THIS_USER_STATUS = "ESTE ESTATUS DE USUARIO";
     public static final String THIS_RESOURCE = "ESTE RECURSO";
     public static final String BUSINESS_EXCEPTION = "INTENTAR NUEVAMENTE MÁS TARDE";

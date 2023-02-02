@@ -45,10 +45,9 @@ public class UserController {
     }
 
     @GetMapping("/{key}")
-    public ResponseEntity<DataResponse<UserResponseDto>> getUser(@PathVariable(value="key") String key,
-                                                                 @RequestBody UserRequestDto userRequestDto) {
+    public ResponseEntity<DataResponse<UserResponseDto>> getUser(@PathVariable(value="key") String key) {
         try{
-            UserResponseDto userEntity = userService.getUser(key, userRequestDto);
+            UserResponseDto userEntity = userService.getUser(key);
             return new ResponseEntity<>(new DataResponse<>(userEntity), HttpStatus.OK);
         }catch (Exception businessException){
             return new ResponseEntity<>(new DataResponse<>(null, false, HttpStatus.BAD_REQUEST.value(),
