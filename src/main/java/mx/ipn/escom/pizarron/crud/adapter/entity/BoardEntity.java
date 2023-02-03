@@ -34,7 +34,6 @@ public class BoardEntity implements Serializable {
     private String idBoard;
 
     @Basic
-    @NotNull
     @Size(max = 45)
     @Column(name = "name")
     private String name;
@@ -45,7 +44,6 @@ public class BoardEntity implements Serializable {
     private String description;
 
     @Basic
-    @NotNull
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
 }

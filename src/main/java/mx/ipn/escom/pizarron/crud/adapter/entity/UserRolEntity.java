@@ -30,13 +30,11 @@ public class UserRolEntity implements Serializable {
     private Integer idUserRol;
 
     @Basic
-    @NotNull
     @Size(max = 20)
     @Column(name = "rol")
     private String rol;
 
     @Basic
-    @NotNull
     @Size(max = 60)
     @Column(name = "description")
     private String description;

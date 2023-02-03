@@ -30,13 +30,11 @@ public class UserStatusEntity implements Serializable {
     private Integer idUserStatus;
 
     @Basic
-    @NotNull
     @Size(max = 20)
     @Column(name = "status")
     private String status;
 
     @Basic
-    @NotNull
     @Size(max = 60)
     @Column(name = "description")
     private String description;

@@ -1,5 +1,6 @@
 package mx.ipn.escom.pizarron.crud.port.repository;
 
+import mx.ipn.escom.pizarron.crud.adapter.dto.response.ClassResponseDto;
 import mx.ipn.escom.pizarron.crud.adapter.entity.ClassEntity;
 import mx.ipn.escom.pizarron.crud.adapter.entity.ParticipantEntity;
 import mx.ipn.escom.pizarron.crud.adapter.entity.UserEntity;
@@ -19,17 +20,28 @@ public interface ParticipantRepository extends JpaRepository <ParticipantEntity,
     ParticipantEntity findByIdClassAndIdUser(ClassEntity idClass, UserEntity idUser);
     ParticipantEntity findByIdParticipant(String idParticipant);
     List<ParticipantEntity> findAllByIdClass(ClassEntity idClass);
+
+    @Query("SELECT p.idClass " +
+            "FROM ParticipantEntity p " +
+            "WHERE " +
+            "(p.idUser = :idUser OR :idUser IS NULL) ")
+    List<ClassEntity> findAllClassesByIdUser(@Param("idUser") UserEntity idUser);
+
     @Query("SELECT new mx.ipn.escom.pizarron.crud.adapter.dto.response.ClassResponseDto(p.idClass, p.idUser, count(p.idClass)) " +
             "FROM ParticipantEntity p " +
             "WHERE " +
             "(p.owner = :owner OR :owner IS NULL)" +
             "AND (p.idClass = :idClass OR :idClass IS NULL)" +
-            "AND (p.idUser = :idUser OR :idUser IS NULL) " +
             "GROUP BY p.idClass")
-    Page<ParticipantEntity> findAllByIdUser(@Param("idUser") UserEntity idUser,
-                                            @Param("idClass") ClassEntity idClass,
-                                            @Param("owner") Boolean owner,
-                                            Pageable pageable);
+    List<ClassResponseDto> findAllByIClassAndOwner(@Param("idClass") ClassEntity idClass, @Param("owner") Boolean owner);
+
+    @Query("SELECT count(p.idClass) " +
+            "FROM ParticipantEntity p " +
+            "WHERE " +
+            "(p.owner = :owner OR :owner IS NULL)" +
+            "AND (p.idClass = :idClass OR :idClass IS NULL)" +
+            "GROUP BY p.idClass")
+    Long countAllByIdClassAndOwner(@Param("idClass") ClassEntity idClass, @Param("owner") Boolean owner);
 
     @Query(value = "SELECT p FROM ParticipantEntity p " +
             "WHERE " +

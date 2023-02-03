@@ -50,17 +50,14 @@ public class ParticipantEntity implements Serializable {
     private UserEntity idUser;
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "enrolled")
     private Boolean enrolled;
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "pending")
     private Boolean pending;
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "owner")
     private Boolean owner;
 

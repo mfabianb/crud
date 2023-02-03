@@ -45,7 +45,6 @@ public class GroupSubjectEntity implements Serializable {
     private SchoolCycleEntity idSchoolCycle;
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "enable")
     private Boolean enable;
 

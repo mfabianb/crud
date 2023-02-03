@@ -30,7 +30,6 @@ public class SchoolCycleEntity implements Serializable {
     private Integer idSchoolCycle;
 
     @Basic(optional = false)
-    @NotNull
     @Size(max = 45)
     @Column(name = "name")
     private String name;

@@ -33,13 +33,11 @@ public class GroupEntity implements Serializable {
     private String idGroup;
 
     @Basic(optional = false)
-    @NotNull
     @Size(max = 45)
     @Column(name = "name")
     private String name;
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "enable")
     private Boolean enable;
 }

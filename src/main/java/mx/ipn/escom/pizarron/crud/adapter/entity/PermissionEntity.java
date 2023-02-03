@@ -30,13 +30,11 @@ public class PermissionEntity implements Serializable {
     private Integer idPermission;
 
     @Basic
-    @NotNull
     @Size(max = 45)
     @Column(name = "name")
     private String name;
 
     @Basic
-    @NotNull
     @Size(max = 100)
     @Column(name = "description")
     private String description;

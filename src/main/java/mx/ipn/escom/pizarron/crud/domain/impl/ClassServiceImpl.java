@@ -48,7 +48,7 @@ public class ClassServiceImpl implements ClassService {
 
         validateClassRequestOnUpdate(key, classRequestDto);
 
-        ClassEntity  classEntity = validateClassExists(key);
+        ClassEntity classEntity = validateClassExists(key);
 
         classEntity.setName(classRequestDto.getName());
         classEntity.setDescription(classRequestDto.getDescription());

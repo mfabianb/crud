@@ -46,7 +46,6 @@ public class PageDrawEntity implements Serializable {
     private UserEntity idUser;
 
     @Basic
-    @NotNull
     @Column(name = "last_modification")
     private LocalDateTime lastModification;
 

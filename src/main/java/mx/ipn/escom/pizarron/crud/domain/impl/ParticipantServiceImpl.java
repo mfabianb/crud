@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -91,7 +92,7 @@ public class ParticipantServiceImpl implements ParticipantService {
 
         participantEntity.setEnrolled(participantRequestDto.getEnrolled());
         participantEntity.setPending(participantRequestDto.getPending());
-        if(participantRequestDto.getEnrolled()) participantEntity.setEnrollmentDate(LocalDateTime.now());
+        if(Boolean.TRUE.equals(participantRequestDto.getEnrolled())) participantEntity.setEnrollmentDate(LocalDateTime.now());
 
         return participantRepository.save(participantEntity);
     }
@@ -108,7 +109,7 @@ public class ParticipantServiceImpl implements ParticipantService {
         participantEntityList.forEach(participantEntity -> {
             participantEntity.setEnrolled(participantRequestDto.getEnrolled());
             participantEntity.setPending(participantRequestDto.getPending());
-            if(participantRequestDto.getEnrolled()) participantEntity.setEnrollmentDate(LocalDateTime.now());
+            if(Boolean.TRUE.equals(participantRequestDto.getEnrolled())) participantEntity.setEnrollmentDate(LocalDateTime.now());
         });
 
         return participantRepository.saveAll(participantEntityList);
@@ -129,15 +130,27 @@ public class ParticipantServiceImpl implements ParticipantService {
     }
 
     @Override
-    public Page<ClassResponseDto> getUserClasses(DataRequest<String> participantRequestDto) throws BusinessException {
+    public List<ClassResponseDto> getUserClasses(String key) throws BusinessException {
+        UserEntity userEntity = userService.getUser(key).getUser();
 
-        CreatePageable pageable = new CreatePageable(participantRequestDto.getPage(), participantRequestDto.getSize(),
-                participantRequestDto.getSort(), participantRequestDto.getOrder());
+        List<ClassEntity> classEntityList = participantRepository.findAllClassesByIdUser(userEntity);
+        List<ClassResponseDto> classResponseDtoList = new ArrayList<>();
 
-        UserEntity userEntity = userService.getUser(participantRequestDto.getData()).getUser();
+        if(userEntity.getIdUserRol().getIdUserRol() == 3){
+            classEntityList.forEach(classEntity ->{
+                ClassResponseDto classResponseDto = participantRepository.findAllByIClassAndOwner(classEntity, Boolean.TRUE).get(0);
+                classResponseDto.setParticipants(participantRepository.countAllByIdClassAndOwner(classEntity, Boolean.FALSE));
+                classResponseDtoList.add(classResponseDto);
+            });
+        }
 
-        //return participantRepository.findAllByIdUser(userEntity, pageable.getPageable());
-        return null;
+        if(userEntity.getIdUserRol().getIdUserRol() == 2){
+            classEntityList.forEach(classEntity ->
+                classResponseDtoList.addAll(participantRepository.findAllByIClassAndOwner(classEntity, Boolean.FALSE))
+            );
+        }
+
+        return classResponseDtoList;
     }
 
     private void validateParticipantDtoOnCreate(ParticipantRequestDto participantRequestDto) throws BusinessException {
@@ -189,11 +202,4 @@ public class ParticipantServiceImpl implements ParticipantService {
         classService.updateClass(classEntity.getIdClass(), classRequestDto);
     }
 
-    private void mapParticipantEntityToClassDto(Page<ParticipantEntity> participantEntities){
-        /*Page<ClassResponseDto> classResponseDtoPage = new Page<ClassResponseDto>() {
-        };
-        participantEntities.get().forEach(participantEntity -> {
-
-        });*/
-    }
 }

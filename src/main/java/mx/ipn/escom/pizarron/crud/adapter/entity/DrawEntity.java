@@ -34,7 +34,6 @@ public class DrawEntity implements Serializable {
     private String idDraw;
 
     @Basic
-    @NotNull
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
 

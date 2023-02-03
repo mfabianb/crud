@@ -41,7 +41,6 @@ public class UserPermissionEntity implements Serializable {
     private PermissionEntity idPermission;
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "enable")
     private Boolean enable;
 }

@@ -43,7 +43,6 @@ public class PageEntity implements Serializable {
     private Integer position;
 
     @Basic
-    @NotNull
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
 

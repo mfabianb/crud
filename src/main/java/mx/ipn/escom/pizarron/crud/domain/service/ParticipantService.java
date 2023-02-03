@@ -20,5 +20,5 @@ public interface ParticipantService {
 
     Page<ParticipantEntity> getParticipants(DataRequest<ParticipantRequestDto> participantRequestDto);
 
-    Page<ClassResponseDto> getUserClasses(DataRequest<String> participantRequestDto) throws BusinessException;
+    List<ClassResponseDto> getUserClasses(String key) throws BusinessException;
 }

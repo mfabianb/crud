@@ -34,19 +34,16 @@ public class ClassEntity implements Serializable {
     private String idClass;
 
     @Basic
-    @NotNull
     @Size(max = 60)
     @Column(name = "name")
     private String name;
 
     @Basic
-    @NotNull
     @Size(max = 120)
     @Column(name = "description")
     private String description;
 
     @Basic
-    @NotNull
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
 
@@ -55,12 +52,10 @@ public class ClassEntity implements Serializable {
     private GroupSubjectEntity idGroupSubject;
 
     @Basic(optional = false)
-    @NotNull
     @Column(name = "enable")
     private Boolean enable;
 
     @Basic
-    @NotNull
     @Size(max = 12)
     @Column(name = "enroll_link")
     private String enrollLink;

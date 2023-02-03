@@ -34,37 +34,31 @@ public class UserEntity implements Serializable {
     private String idUser;
 
     @Basic(optional = false)
-    @NotNull
     @Size(max = 24)
     @Column(name = "username")
     private String username;
 
     @Basic(optional = false)
-    @NotNull
     @Size(max = 255)
     @Column(name = "password")
     private String password;
 
     @Basic
-    @NotNull
     @Size(max = 100)
     @Column(name = "email")
     private String email;
 
     @Basic
-    @NotNull
     @Size(max = 100)
     @Column(name = "name")
     private String name;
 
     @Basic
-    @NotNull
     @Size(max = 100)
     @Column(name = "last_name")
     private String lastName;
 
     @Basic
-    @NotNull
     @Size(max = 100)
     @Column(name = "second_last_name")
     private String secondLastName;
