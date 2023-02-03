@@ -40,7 +40,7 @@ spring:
   profiles: local
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/pizarron?useSSL=false&serverTimezone=America/Mexico_City&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3307/pizarron?useSSL=false&serverTimezone=America/Mexico_City&allowPublicKeyRetrieval=true
     username: root
     password: hola1234
     hikari:
@@ -67,3 +67,5 @@ logging:
         escom:
           pizarron:
             crud: DEBUG
+crud:
+  current-cycle: 1
