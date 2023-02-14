@@ -15,6 +15,7 @@ import mx.ipn.escom.pizarron.crud.util.CreatePageable;
 import mx.ipn.escom.pizarron.crud.util.exceptions.BusinessException;
 import org.jvnet.hk2.annotations.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 
 import java.util.ArrayList;
@@ -74,7 +75,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<UserEntity> getUserList(DataRequest<UserRequestDto> userRequestDto) throws BusinessException{
+    public UserEntity userUpdate(UserEntity userEntity){
+        return userRepository.save(userEntity);
+    }
+
+    @Override
+    public Page<UserEntity> getUserList(DataRequest<UserRequestDto> userRequestDto){
         CreatePageable pageable = new CreatePageable(userRequestDto.getPage(), userRequestDto.getSize(),
                 userRequestDto.getSort(), userRequestDto.getOrder());
         return userRepository.findAllByFilter(userRequestDto.getData().getUsername(), userRequestDto.getData().getEmail(),
@@ -118,6 +124,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public String getFullName(UserEntity userEntity){
         return userEntity.getName() + " " + userEntity.getLastName() + " " + userEntity.getSecondLastName();
+    }
+
+    @Override
+    public UserEntity getUserByCredentials(String username, String password) throws BusinessException {
+        UserEntity userEntity = userRepository.findByUsernameAndPassword(username, password);
+        if(Objects.isNull(userEntity) || userEntity.getIdUserStatus().getIdUserStatus() != 1)
+            throw new BusinessException(UNAUTHORIZED);
+        return userEntity;
     }
 
     private Boolean validateFullName(UserRequestDto userRequestDto, UserEntity userEntity){

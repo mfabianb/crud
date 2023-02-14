@@ -18,4 +18,5 @@ public class Constants {
     public static final String THIS_USER_STATUS = "ESTE ESTATUS DE USUARIO";
     public static final String THIS_RESOURCE = "ESTE RECURSO";
     public static final String BUSINESS_EXCEPTION = "INTENTAR NUEVAMENTE MÁS TARDE";
+    public static final String UNAUTHORIZED = "USUARIO NO AUTORIZADO";
 }

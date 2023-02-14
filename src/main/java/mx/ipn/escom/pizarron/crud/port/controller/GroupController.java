@@ -57,6 +57,7 @@ public class GroupController {
         try{
             return new ResponseEntity<>(new DataResponse<>(groupService.getGroups(groupRequestDto)), HttpStatus.OK);
         }catch (Exception businessException){
+            log.info(businessException);
             return new ResponseEntity<>(new DataResponse<>(null, false, HttpStatus.BAD_REQUEST.value(),
                     ExceptionMessage.setMessage(businessException.getMessage())), HttpStatus.BAD_REQUEST);
         }

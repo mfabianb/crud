@@ -13,11 +13,15 @@ public interface UserService {
 
     UserResponseDto updateUser(String key, UserRequestDto userRequestDto) throws BusinessException;
 
-    Page<UserEntity> getUserList(DataRequest<UserRequestDto> userRequestDto) throws BusinessException;
+    UserEntity userUpdate(UserEntity userEntity);
+
+    Page<UserEntity> getUserList(DataRequest<UserRequestDto> userRequestDto);
 
     UserResponseDto getUser(String key) throws BusinessException;
 
     UserResponseDto updatePermissions(String key, UserPermissionRequestDto userPermissionRequestDto) throws BusinessException;
 
     String getFullName(UserEntity userEntity);
+
+    UserEntity getUserByCredentials(String username, String password) throws BusinessException;
 }
