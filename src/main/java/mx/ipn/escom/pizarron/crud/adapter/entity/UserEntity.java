@@ -64,6 +64,15 @@ public class UserEntity implements Serializable {
     private String secondLastName;
 
     @Basic
+    @Size(max = 344)
+    @Column(name = "token")
+    private String token;
+
+    @Basic
+    @Column(name = "token_enable")
+    private Boolean tokenEnable;
+
+    @Basic
     @Column(name = "last_login")
     private LocalDateTime lastLogin;
 

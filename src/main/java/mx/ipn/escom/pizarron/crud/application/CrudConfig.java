@@ -4,8 +4,10 @@ import mx.ipn.escom.pizarron.crud.domain.impl.*;
 import mx.ipn.escom.pizarron.crud.domain.service.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Configuration
+@EnableScheduling
 public class CrudConfig {
 
     @Bean
@@ -39,5 +41,14 @@ public class CrudConfig {
 
     @Bean
     public UserStatusService userStatusService() { return new UserStatusServiceImpl(); }
+
+    @Bean
+    public EncodeService encodeService(){ return new EncodeServiceImpl(); }
+
+    @Bean
+    public AuthenticationService authenticationService(){ return new AuthenticationServiceImpl(); }
+
+    @Bean
+    public AuthorizationService authorizationService() { return new AuthorizationServiceImpl(); }
 
 }

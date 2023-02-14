@@ -13,7 +13,7 @@ import java.io.Serializable;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class DataRequest<D> extends SimpleRequest implements Serializable {
     private static final long serialVersionUID = 1L;
-    private D data;
+    private transient D data;
 
     DataRequest(D data, String sort){
         super(sort);

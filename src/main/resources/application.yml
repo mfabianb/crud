@@ -69,3 +69,7 @@ logging:
             crud: DEBUG
 crud:
   current-cycle: 1
+  generate:
+    cron: 0 0 10 * * *
+  private-key: private.key
+  public-key: public.key

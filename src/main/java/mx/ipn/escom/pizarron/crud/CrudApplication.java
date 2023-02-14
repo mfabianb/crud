@@ -9,8 +9,6 @@ import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import javax.persistence.Entity;
-
 @ComponentScan(basePackages = "mx.ipn.escom.pizarron")
 @EntityScan(basePackages = "mx.ipn.escom.pizarron")
 @EnableJpaRepositories(basePackages = "mx.ipn.escom.pizarron")

@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 public interface UserRepository extends JpaRepository<UserEntity, String> {
     UserEntity findByNameAndLastNameAndSecondLastName(String name, String lastName, String secondLastName);
     UserEntity findByUsername(String username);
+    UserEntity findByUsernameAndPassword(String username, String password);
     UserEntity findByEmail(String email);
     UserEntity findByIdUser(String idUser);
 
